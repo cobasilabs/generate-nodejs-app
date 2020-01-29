@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const ora = require('ora')
 const figlet = require('figlet')
 const chalk = require('chalk')
