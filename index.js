@@ -20,12 +20,12 @@ const todoModel = require('./scaffold/app/models/todo')
 const todoController = require('./scaffold/app/controllers/todo')
 const todoTests = require('./scaffold/tests/routes/todo.test')
 
-console.log(chalk.green(figlet.textSync('Create')))
+console.log(chalk.green(figlet.textSync('Generate')))
 console.log(chalk.green(figlet.textSync('NodeJS app')))
 console.log(chalk.yellow("\n---------------------------------------------------------"))
 console.log(chalk.yellow("Created by Cobasi Labs - github.com/cobasilabs"))
 console.log(chalk.yellow("---------------------------------------------------------\n"))
-console.log(chalk.green(`This is a CLI to create the scaffold (A.K.A boilerplate) 
+console.log(chalk.green(`This is a CLI to generate the scaffold (A.K.A boilerplate) 
 of a NodeJS app using the latest versions of Express, Jest 
 and other many commonly used tools to create NodeJS APIs. \n`))
 
@@ -85,10 +85,10 @@ inquirer
       }
 
       await ps.execInFolder(appname, 'git add .')
-      await ps.execInFolder(appname, 'git commit -m "Create app initial structure"')
+      await ps.execInFolder(appname, 'git commit -m "Generate app initial structure"')
 
       spinner.stop()
-        console.log(chalk.green("\nApp successfully created!"))
+        console.log(chalk.green("\nApp successfully generated!"))
         console.log(chalk.green(`Check the ${appname} folder to start working on your new project`))
         console.log(chalk.green('\nOn the folder you can use the following commands:'))
         console.log(chalk.green(`\n${managerCmd} ${managerRun}serve - To serve your application`))

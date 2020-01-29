@@ -1,10 +1,10 @@
-# Create NodeJS app
+# Generate NodeJS app
 
 Type in your terminal `npx generate-nodejs-app` and see the magic happens!
 
 ## About
 
-This is a tool inspired on `create-react-app` to create a basic structure 
+This is a tool inspired on `create-react-app` to generate a basic structure 
 of a NodeJS app using the most commonly used tools when creating JS APIs.
 
 When running this tool you will have a new NodeJS API with a basic app 
