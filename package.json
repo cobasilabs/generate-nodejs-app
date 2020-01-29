@@ -1,6 +1,6 @@
 {
   "name": "generate-nodejs-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI to create a boilerplate application for NodeJS",
   "main": "index.js",
   "scripts": {
