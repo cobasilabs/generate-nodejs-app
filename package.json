@@ -1,5 +1,5 @@
 {
-  "name": "create-nodejs-app",
+  "name": "generate-nodejs-app",
   "version": "1.0.0",
   "description": "A CLI to create a boilerplate application for NodeJS",
   "main": "index.js",
