@@ -2,6 +2,7 @@
   "name": "generate-nodejs-app",
   "version": "1.0.2",
   "description": "A CLI to generate a boilerplate application for NodeJS",
+  "homepage": "https://github.com/cobasilabs/generate-nodejs-app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
