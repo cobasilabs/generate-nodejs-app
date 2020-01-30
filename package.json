@@ -1,6 +1,6 @@
 {
   "name": "generate-nodejs-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A CLI to generate a boilerplate application for NodeJS",
   "homepage": "https://github.com/cobasilabs/generate-nodejs-app",
   "main": "index.js",
