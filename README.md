@@ -52,7 +52,11 @@ it by yourself, updating the dependencies and all that stuff.
 
 ## Wishlist
 
-- Coverage report
+- Generate with README.md file
+- Organize CLI code 
+- Test the CLI itself
+- Check for the dependencies to run the app (Mongo...)
+- Coverage report for the generated app
 - More options when generating the app (without the todo app...)
 
 ## Info
