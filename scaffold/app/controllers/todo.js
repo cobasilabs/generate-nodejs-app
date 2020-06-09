@@ -1,9 +1,17 @@
 module.exports = `\
 const Todo = require('../models/todo')
+const {
+  todoSearch,
+  todoCreate,
+  todoEdit,
+  todoReplace,
+  todoRemove
+} = require('../services/todo')
 
 const todoGet = async (req, res) => {
   try {
-    const results = await Todo.find({})
+    const { query, order, limit, page } = _parseSearchParams(req.query)
+    const results = await todoSearch(query, { order, limit, page }) 
     res.send(results)
   } catch (error) {
     res.status(400).send({ error: error.message })
@@ -12,9 +20,8 @@ const todoGet = async (req, res) => {
 
 const todoPost = async (req, res) => {
   try {
-    const newTodo = new Todo(req.body)
-    await newTodo.save()
-    res.send(newTodo)
+    const newTodo = await todoCreate(req.body)
+    res.status(201).send(newTodo)
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
@@ -22,17 +29,19 @@ const todoPost = async (req, res) => {
 
 const todoPatch = async (req, res) => {
   try {
-    const updated = await Todo.findOneAndUpdate(
-      { _id: req.params.id },
-      { ...req.body }
-    )
+    const { params, body } = req
+    const newTodo = await todoEdit(params.id, body)
+    res.send(newTodo)
+  } catch (error) {
+    res.status(400).send({ error: error.message })
+  }
+}
 
-    if (updated) {
-      const newTodo = await Todo.findOne({ _id: req.params.id })
-      res.send(newTodo)
-    } else {
-      throw Error('Could not find task to update')
-    }
+const todoPut = async (req, res) => {
+  try {
+    const { params, body } = req
+    const newTodo = await todoReplace(params.id, body)
+    res.send(newTodo)
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
@@ -40,22 +49,29 @@ const todoPatch = async (req, res) => {
 
 const todoDelete = async (req, res) => {
   try {
-    const deleted = await Todo.findOneAndDelete({ _id: req.params.id })
-
-    if (deleted) {
-      res.send()
-    } else {
-      throw Error('Could not find task to delete')
-    }
+    const { params } = req
+    const deleted = await todoRemove(params.id)
+    res.send(deleted)
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
+}
+
+function _parseSearchParams (queryParams) {
+  let { query = '{}', order = 'name,asc', limit, page } = queryParams
+  const [field = 'name', direction = 'asc'] = order.split(',')
+  query = typeof query === 'string' ? JSON.parse(query) : query
+  order = { [field]: direction }
+  limit = limit ? Number(limit) : limit
+  page = page ? Number(page) : page
+  return { ...queryParams, query, order, limit, page }
 }
 
 module.exports = {
   todoGet,
   todoPost,
   todoPatch,
+  todoPut,
   todoDelete
 }
 `

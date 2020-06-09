@@ -7,7 +7,7 @@ const { MONGO_URL } = process.env
 const request = supertest(api)
 
 beforeAll(async () => {
-  await mongoose.connect(\`\${MONGO_URL}Test\`, {
+  await mongoose.connect(\`\${MONGO_URL}\`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
