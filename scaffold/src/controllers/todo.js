@@ -42,7 +42,7 @@ export const remove = async (req, res) => {
     const deleted = await Todo.findOneAndDelete({ _id: req.params.id })
 
     if (!deleted) {
-      res.status.send({ error: 'Could not find task to delete' })
+      return res.status.send({ error: 'Could not find task to delete' })
     }
     res.send()
   } catch (error) {
