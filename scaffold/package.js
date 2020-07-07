@@ -1,7 +1,6 @@
 module.exports = {
   name: '',
   version: '1.0.0',
-  main: 'src/src.js',
   license: 'MIT',
   scripts: {
     start: 'yarn lint; node -r dotenv/config -r esm -r module-alias/register server.js',
