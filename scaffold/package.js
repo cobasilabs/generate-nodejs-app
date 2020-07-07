@@ -1,15 +1,32 @@
 module.exports = {
   name: '',
   version: '1.0.0',
-  main: 'app/app.js',
+  main: 'src/src.js',
   license: 'MIT',
   scripts: {
+    start: 'yarn lint; node -r dotenv/config -r esm -r module-alias/register server.js',
+    dev: 'nodemon --inspect server.js --exec \'yarn lint; node -r dotenv/config -r esm -r module-alias/register\'',
     lint: 'standard ./**/*.js',
-    test: 'jest --setupFiles dotenv/config --runInBand',
-    serve: 'yarn lint; node app/server.js',
-    debug: 'nodemon --inspect app/server.js --exec \'yarn lint; node\''
+    test: 'jest --setupFiles dotenv/config --runInBand --coverage',
+    'test:watch': 'jest --setupFiles dotenv/config --runInBand --coverage --watch'
   },
   jest: {
-    testEnvironment: 'node'
+    testEnvironment: 'node',
+    coverageThreshold: {
+      global: {
+        branches: 100,
+        functions: 100,
+        lines: 100,
+        statements: 0
+      }
+    }
   },
+  _moduleAliases: {
+    '~': './src'
+  },
+  standard: {
+    ignore: [
+      '__mocks__'
+    ]
+  }
 }

@@ -5,6 +5,7 @@
   "homepage": "https://github.com/cobasilabs/generate-nodejs-app",
   "main": "index.js",
   "scripts": {
+    "generate-nodejs-app": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

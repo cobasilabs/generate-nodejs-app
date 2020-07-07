@@ -1,7 +1,7 @@
 module.exports = `\
-const Todo = require('../models/todo')
+import Todo from '~/models/todo'
 
-const todoGet = async (req, res) => {
+export const getAll = async (req, res) => {
   try {
     const results = await Todo.find({})
     res.send(results)
@@ -10,7 +10,7 @@ const todoGet = async (req, res) => {
   }
 }
 
-const todoPost = async (req, res) => {
+export const add = async (req, res) => {
   try {
     const newTodo = new Todo(req.body)
     await newTodo.save()
@@ -20,42 +20,34 @@ const todoPost = async (req, res) => {
   }
 }
 
-const todoPatch = async (req, res) => {
+export const update = async (req, res) => {
   try {
     const updated = await Todo.findOneAndUpdate(
       { _id: req.params.id },
       { ...req.body }
     )
 
-    if (updated) {
-      const newTodo = await Todo.findOne({ _id: req.params.id })
-      res.send(newTodo)
-    } else {
-      throw Error('Could not find task to update')
+    if (!updated) {
+      return res.status(400).send({ error: 'Could not find task to update' })
     }
+    const newTodo = await Todo.findOne({ _id: req.params.id })
+    res.send(newTodo)
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
 }
 
-const todoDelete = async (req, res) => {
+export const remove = async (req, res) => {
   try {
     const deleted = await Todo.findOneAndDelete({ _id: req.params.id })
 
-    if (deleted) {
-      res.send()
-    } else {
-      throw Error('Could not find task to delete')
+    if (!deleted) {
+      res.status.send({ error: 'Could not find task to delete' })
     }
+    res.send()
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
 }
 
-module.exports = {
-  todoGet,
-  todoPost,
-  todoPatch,
-  todoDelete
-}
 `

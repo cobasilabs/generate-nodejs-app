@@ -2,6 +2,12 @@
 
 Type in your terminal `npx generate-nodejs-app` and see the magic happens!
 
+## Getting started
+
+- Install this project with `npm` or `yarn` and then run the command `yarn generate-nodejs-app`
+- In the terminal (powershell for windows) you'll be guided to choose your <strong>project name</strong>
+- The generated project will follow the the [Todo app](#) template
+
 ## About
 
 This is a tool inspired on `create-react-app` to generate a basic structure 

@@ -1,4 +1,7 @@
 module.exports = `\
-node_modules
+coverage/
+node_modules/
 .env
+.idea/
+
 `
