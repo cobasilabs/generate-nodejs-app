@@ -1,10 +1,13 @@
 module.exports = `\
-const mongoose = require('mongoose')
-const supertest = require('supertest')
-const Todo = require('../../app/models/todo')
-const api = require('../../app/api')
-const { MONGO_URL } = process.env
-const request = supertest(api)
+import mongoose from 'mongoose'
+import supertest from 'supertest'
+
+import Todo from '~/models/todo'
+import app from '~/index'
+import env from '~/config/env'
+
+const { MONGO_URL } = env
+const request = supertest(app)
 
 beforeAll(async () => {
   await mongoose.connect(\`\${MONGO_URL}Test\`, {
@@ -14,20 +17,21 @@ beforeAll(async () => {
   })
 })
 
-afterEach(async () => { await mongoose.connection.db.dropDatabase() })
-afterAll(async () => { await mongoose.connection.close() })
+afterEach(async () => {
+  await mongoose.connection.db.dropDatabase()
+})
+afterAll(async () => {
+  await mongoose.connection.close()
+})
 
 describe('todo route', () => {
   it('gets all the tasks', async () => {
-    const mockedTodos = [
-      { task: 'Study NodeJS' },
-      { task: 'Work with NodeJS' },
-    ]
+    const mockedTodos = [{ task: 'Study NodeJS' }, { task: 'Work with NodeJS' }]
 
     await Todo.insertMany(mockedTodos)
     const results = await request.get('/')
 
-    expect(results.body.length).toBe(2)
+    expect(results.body).toHaveLength(2)
     expect(results.body[0].task).toBe(mockedTodos[0].task)
     expect(results.body[1].task).toBe(mockedTodos[1].task)
   })
@@ -58,4 +62,5 @@ describe('todo route', () => {
     expect(delResult.status).toBe(200)
   })
 })
+
 `
