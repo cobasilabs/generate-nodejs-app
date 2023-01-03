@@ -17,6 +17,7 @@ const api = require('./scaffold/app/api')
 const server = require('./scaffold/app/server')
 const todoRoutes = require('./scaffold/app/routes/todo')
 const todoModel = require('./scaffold/app/models/todo')
+const todoService = require('./scaffold/app/services/todo')
 const todoController = require('./scaffold/app/controllers/todo')
 const todoTests = require('./scaffold/tests/routes/todo.test')
 
@@ -77,6 +78,7 @@ inquirer
       await ps.writeFile(`${appname}/app/server.js`, server)
       await ps.writeFile(`${appname}/app/routes/todo.js`, todoRoutes)
       await ps.writeFile(`${appname}/app/models/todo.js`, todoModel)
+      await ps.writeFile(`${appname}/app/services/todo.js`, todoService)
       await ps.writeFile(`${appname}/app/controllers/todo.js`, todoController)
       await ps.writeFile(`${appname}/tests/routes/todo.test.js`, todoTests)
       

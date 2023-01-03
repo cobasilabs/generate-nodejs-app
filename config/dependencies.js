@@ -31,4 +31,8 @@ module.exports = [
     name: 'supertest',
     param: '--dev'
   },
+  {
+    name: '@shelf/jest-mongodb',
+    param: '--dev'
+  },
 ]

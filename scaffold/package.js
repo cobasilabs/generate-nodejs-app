@@ -10,6 +10,6 @@ module.exports = {
     debug: 'nodemon --inspect app/server.js --exec \'yarn lint; node\''
   },
   jest: {
-    testEnvironment: 'node'
+    preset: '@shelf/jest-mongodb'
   },
 }
